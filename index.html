@@ -800,6 +800,17 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
       }))]);
     root.appendChild(el("div", { class: "panel" }, [el("h3", { text: "Brands sending Meta traffic to Amazon" }), el("p", { class: "sub", text: "Click a row to see that brand's ads. Tagged = links carry an Amazon Attribution tag, so the brand can measure the sale." }), el("div", { class: "scroll" }, [t])]));
     var pr = S.peers[0];
+    var hb = pr && pr.hb;
+    if (hb && (hb.brands || []).length) {
+      var ht = el("table", { class: "tbl" }, [el("thead", null, [el("tr", null, ["Brand", "Top seller on Amazon", "Ads checked", "To Amazon", "Where their Meta ads go", "Read"].map(function (h) { return el("th", { text: h }); }))]),
+        el("tbody", null, hb.brands.map(function (r) {
+          return el("tr", null, [el("td", null, [el("b", { text: r.name })]), el("td", { text: r.amazon_top || "", style: "white-space:nowrap" }), el("td", { text: String(r.checked) }),
+            el("td", null, [el("span", { class: "badge" + (r.amazon ? " hi" : ""), text: r.amazon ? r.amazon + " ads" : "None" })]),
+            el("td", { text: r.dest || "", style: "color:var(--muted)" }), el("td", { text: r.note || "" })]);
+        }))]);
+      root.appendChild(el("div", { class: "panel" }, [el("h3", { text: "High-ticket brands: who sends Meta traffic to $50+ Amazon products?" }),
+        el("p", { class: "sub", text: hb.summary + (hb.not_found ? " " + hb.not_found : "") }), el("div", { class: "scroll" }, [ht])]));
+    }
     if (pr && (pr.brands || []).length) {
       var pt = el("table", { class: "tbl" }, [el("thead", null, [el("tr", null, ["Brand", "Ads checked", "To Amazon", "Catalog ads via a retailer", "Where their Meta ads go", "Read"].map(function (h) { return el("th", { text: h }); }))]),
         el("tbody", null, pr.brands.map(function (r) {
