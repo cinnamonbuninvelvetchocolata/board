@@ -995,7 +995,7 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
         ["Format", fmtLabel(c) + (a.fmt && FMT[a.fmt] && FMT[a.fmt].toUpperCase() !== a.fmt ? " (" + a.fmt.replace(/_/g, " ").toLowerCase() + ")" : "")], ["Length", c.dur ? fmtDur(c.dur) : ""], ["Cards", a.n_cards > 1 ? a.n_cards : ""],
         ["Versions", c.var > 1 ? c.var + " near-identical ads" : "1"], ["Platforms", (a.platforms || c.plat || []).join(", ").replace(/_/g, " ")], ["Button", a.cta || ""],
         ["Launched", fmtDate(a.started || c.started)], ["Last seen", fmtDate(c.seen) + (c.live && !c.stale ? " · live" : " · not seen since")], ["Running", (c.run || 0) + " days"],
-        ["Found by", { sweep: "Daily Amazon sweep", watch: "Watchlist", winners: "Long-runner check", scout: "Brand scout" }[c.src] || c.src]])]));
+        ["Found by", { sweep: "Daily Amazon sweep", watch: "Watchlist", winners: "Long-runner check", scout: "Brand scout", adlib: "Meta Ad Library crawl" }[c.src] || c.src]])]));
       if (a.headline || a.copy) slot.appendChild(el("div", { class: "sec" }, [el("div", { class: "label", text: "Copy" }), a.headline ? el("b", { text: a.headline }) : null, a.copy ? el("p", { class: "copy", text: a.copy }) : null]));
       if (a.transcript) slot.appendChild(el("details", null, [el("summary", { text: a.asr ? "What's said in the first 35 seconds (auto-transcribed)" : "Video transcript" }), el("p", { class: "copy", style: "margin-top:8px", text: a.transcript })]));
       if ((a.cards || []).length > 1) slot.appendChild(el("details", null, [el("summary", { text: "Carousel cards (" + a.cards.length + ")" }), kv(a.cards.map(function (cd, i) { return ["Card " + (i + 1), [cd.headline, cd.description].filter(Boolean).join(" — ")]; }))]));
