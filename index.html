@@ -186,7 +186,10 @@ svg.i { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor;
 @keyframes rise { from { opacity: 0; transform: translateY(14px) scale(.985); } to { opacity: 1; transform: none; } }
 .media { position: relative; background: var(--sunk); overflow: hidden; }
 .media > img, .media > video { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 50% 18%; }  /* vertical ads keep their top-third hook text */
-.media .ph { height: 100%; display: grid; place-items: center; color: var(--muted); font-size: 12px; padding: 16px; text-align: center; }
+.media .ph { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 6px; padding: 44px 18px 52px; text-align: center; color: var(--muted); font-size: 12px; line-height: 1.4;
+  background: repeating-linear-gradient(135deg, var(--sunk) 0 10px, color-mix(in srgb, var(--sunk) 70%, var(--surface)) 10px 20px); }
+.media .ph svg { width: 26px; height: 26px; fill: none; stroke: currentColor; stroke-width: 1.6; opacity: .7; }
+.media .ph b { color: var(--ink-2); font-size: 13px; }
 .pill { position: absolute; top: 9px; font-size: 10.5px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: 4px 8px; border-radius: 99px; background: rgba(18, 20, 18, .66); color: #F4F2EC; backdrop-filter: blur(4px); font-variant-numeric: tabular-nums; display: inline-flex; align-items: center; gap: 4px; }
 .pill.l { left: 9px; } .pill.r { right: 9px; }
 .pill.new { background: #F4F2EC; color: #1d211e; }
@@ -251,6 +254,36 @@ svg.i { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor;
 .strip { display: flex; gap: 5px; }
 .strip button { width: 38px; height: 46px; padding: 0; border: 0; border-radius: 6px; overflow: hidden; background: var(--sunk); }
 .strip img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* steal boards */
+.steal-head { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(260px, 1fr); gap: 22px; align-items: center; }
+.steal-head h2 { margin: 4px 0 8px; font-size: 19px; font-weight: 800; letter-spacing: -.01em; }
+.steal-head p { margin: 0 0 12px; font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+.funnel { display: grid; gap: 6px; justify-items: center; }
+.fstep { width: var(--w); display: flex; align-items: center; justify-content: space-between; gap: 10px; border: 0; border-radius: 10px; padding: 10px 14px;
+  background: color-mix(in srgb, var(--c) 16%, var(--surface)); color: var(--ink); text-align: left; transition: transform .15s, box-shadow .15s; }
+.fstep:hover { transform: translateY(-1px); }
+.fstep[aria-pressed="true"] { background: var(--c); color: #fff; box-shadow: var(--shadow-lift); }
+.fstep .fl { display: grid; } .fstep b { font-size: 14px; font-weight: 800; } .fstep small { font-size: 11px; opacity: .8; }
+.fstep .fn { font-size: 20px; font-weight: 800; font-variant-numeric: tabular-nums; }
+.stage-intro { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 13px; color: var(--muted); }
+.stage-intro i { width: 10px; height: 10px; border-radius: 3px; } .stage-intro b { color: var(--ink); font-size: 15px; }
+.board .bhead { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.board .bhead .sub { margin-bottom: 10px; }
+.play { display: flex; gap: 10px; align-items: flex-start; flex-wrap: wrap; padding: 10px 12px; border-radius: 10px; background: var(--sage-soft); font-size: 13px; color: var(--ink-2); margin-bottom: 14px; }
+.play .badge { flex: none; white-space: normal; max-width: 100%; }
+.strip-row { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; }
+.mini { display: grid; align-content: start; gap: 0; padding: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface); text-align: left; scroll-snap-align: start; transition: transform .15s, box-shadow .15s; }
+.mini:hover { transform: translateY(-2px); box-shadow: var(--shadow-lift); }
+.mthumb { position: relative; background: var(--sunk); overflow: hidden; }
+.mthumb img, .mthumb video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; }
+.mthumb .mph { position: absolute; inset: 0; display: grid; place-items: center; font-size: 12px; color: var(--muted); }
+.mb { display: grid; gap: 5px; padding: 10px 11px 12px; font-size: 12.5px; }
+.mb b { font-size: 12px; color: var(--muted); font-weight: 700; }
+.mb q { font-weight: 700; line-height: 1.35; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; quotes: "“" "”"; }
+.mb .label { margin-top: 4px; color: var(--gold); }
+.mb .steal { margin: 0; color: var(--ink-2); line-height: 1.4; }
+@media (max-width: 900px) { .steal-head { grid-template-columns: 1fr; } .strip-row { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 70%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; } }
 
 /* tables */
 .tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -430,6 +463,7 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
     products: '<path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/>',
     angles: '<path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/>',
     brands: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/>',
+    steal: '<path d="M4 4h16v6a8 8 0 0 1-16 0V4z"/><path d="M9 21h6M12 18v3"/><path d="m9 9 2 2 4-4"/>',
     saved: '<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2L12 17.3 6.5 20.2l1-6.2L3 9.6l6.2-.9L12 3z"/>',
     ads: '<rect x="2" y="5" width="20" height="14" rx="3"/><path d="m10 9 5 3-5 3V9z"/>',
     brand: '<path d="M3 21V9l9-6 9 6v12"/><path d="M9 21v-6h6v6"/>',
@@ -440,6 +474,7 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
   };
   var VIEWS = [["overview", "Overview", "What the newest Meta → Amazon beauty ads are doing"], ["library", "Ad library", "Every creative, with its hook, angle and the product it sells"],
     ["products", "Products", "What the ads are selling on Amazon, by price tier"], ["angles", "Hooks & angles", "How these ads open and what they sell on"],
+    ["steal", "Steal boards", "Proven ideas by funnel stage and angle, each with how {B} can use it"],
     ["brands", "Brands", "Who sends Meta traffic to Amazon, and which like-minded brands don't"], ["saved", "Saved", "Creatives you starred"]];
 
   var S = { days: [], digests: [], updates: [], brands: {}, saves: {}, catalog: {}, adAsin: {}, peers: [], watch: null, canWrite: false, db: null, uid: null, loaded: false,
@@ -537,12 +572,13 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
 
   function card(c, i) {
     var media = el("div", { class: "media" });
-    if (c.img) {
-      var img = el("img", { src: c.img, alt: c.brand + " ad: " + (c.hook || ""), loading: "lazy" });
-      media.style.aspectRatio = String(Math.max(0.8, Math.min(1.25, c.ar || 0.8)));  // 4:5 at most: the full frame is in the detail view
-      media.appendChild(img);
-    } else media.appendChild(el("div", { class: "ph", text: c.fmt === "DCO" || c.fmt === "DPA" ? "Dynamic ad: Meta builds it per viewer, so no single creative was captured" : "No creative captured" }));
-    var left = (c.fmt === "VIDEO" ? '<svg viewBox="0 0 10 10"><path d="M2 1l7 4-7 4z"/></svg>' : "") + fmtLabel(c) + (c.dur ? " " + fmtDur(c.dur) : "") + (c.nc > 1 ? " · " + c.nc : "");
+    media.style.aspectRatio = String(Math.max(0.8, Math.min(1.25, c.ar || 0.8)));  // every card gets the same box; 4:5 at most, full frame in the detail view
+    if (c.img) media.appendChild(el("img", { src: c.img, alt: c.brand + " ad: " + (c.hook || ""), loading: "lazy" }));
+    else if (c.vid) media.appendChild(el("video", { src: c.vid, muted: true, playsinline: true, preload: "metadata", "aria-label": c.brand + " ad video" }));
+    else media.appendChild(el("div", { class: "ph" }, [el("span", { html: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="16" width="7" height="5" rx="2"/></svg>' }),
+      el("b", { text: c.fmt === "DCO" || c.fmt === "DPA" ? "Dynamic catalog ad" : "No creative captured" }),
+      el("span", { text: c.fmt === "DCO" || c.fmt === "DPA" ? "Meta assembles it per viewer, so there is no single image. Open it for the copy and landing page." : "Open it for the copy and landing page." })]));
+    var left = (c.fmt === "VIDEO" || c.vid ? '<svg viewBox="0 0 10 10"><path d="M2 1l7 4-7 4z"/></svg>' : "") + fmtLabel(c) + (c.dur ? " " + fmtDur(c.dur) : "") + (c.nc > 1 ? " · " + c.nc : "");
     media.appendChild(el("span", { class: "pill l", html: left }));
     media.appendChild(el("span", { class: "pill r" + (c.isNew ? " new" : ""), text: c.isNew ? "New" : (c.run || 0) + "d" }));
     media.appendChild(el("div", { class: "who" }, [avatar(c.b), el("span", null, [c.brand, c.page ? el("em", { text: " · " + c.page }) : null])]));
@@ -826,6 +862,89 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
     return root;
   }
 
+  /* ---------- steal boards: funnel stage x angle, mapped to the house brand's own evergreen angles ---------- */
+  var FUNNEL = [
+    ["tof", "Top of funnel", "Stop the scroll", "Make a stranger stop and feel something. Judge on 3-second view rate and thumb-stop.", "var(--sage)"],
+    ["mof", "Middle of funnel", "Make the case", "Give a warm viewer a reason to believe. Judge on hold rate and click-through.", "var(--slate)"],
+    ["bof", "Bottom of funnel", "Close on Amazon", "Turn intent into an order. Judge on cost per Amazon order (Attribution tag).", "var(--gold)"]];
+  // The house brand's evergreen angle system (A1-A10); its name comes from the data (config doc / encrypted index),
+  // never from this file, because the same file is the public shell of the hosted copy. Rules carried over: no before/after or anti-aging claims, no strikethrough,
+  // offers and occasions live in a 2-second end card on an evergreen master, never in the master itself.
+  var COBA = {
+    "Gifting": ["A1 Keepsake · A2 Portrait", "Film the hand-over: the set passed with both hands and the face that receives it. The line is the gift she keeps."],
+    "Seasonal / limited": ["End-card overlay", "Keep the film evergreen and drop the occasion or offer into the last two seconds, so the master never expires."],
+    "Scent & sensory": ["A3 The Ritual", "Name the scent like a memory and show lather and texture on skin, sound up, in a real shower."],
+    "Ingredient / science": ["A7 Heritage", "Tell where one ingredient comes from and why it is in the formula, one on-screen fact, no lab claims."],
+    "Problem → solution": ["A5 Rinse Test · A9 Reassurance", "Name one everyday body-care annoyance (tight skin after the shower, residue) and show the rinse that answers it."],
+    "Results / before-after": ["A4 Visible Result", "Show the feel and glow in real light right after use. No before/after splits and no age or whitening claims."],
+    "Amazon proof": ["A9 Reassurance", "Put {B}'s real Amazon stars and one verbatim review on the image, with an 'available at amazon' lockup."],
+    "Deal / price": ["A10 Value Math", "Do the math per use or per gift in an end card. Never a strikethrough or a price burned into the master."],
+    "Self-care ritual": ["A3 The Ritual", "'Ten minutes, not ten steps': one real evening shower ritual, filmed in order."],
+    "Creator lifestyle": ["A2 Portrait", "A creator who looks like the recipient (her mum, her best friend) opens it on camera; the casting is the hook."],
+    "Bundle / value": ["A6 The Refill · A10 Value Math", "Lay out every piece in the set and count it, then show the refill so the jar is bought once."],
+    "Heritage / story": ["A7 Heritage", "One line of Vietnamese-heritage origin over hands and craft; the story earns the premium price."]
+  };
+  function B() { return S.brandName || "Your brand"; }
+  function funnelOf(c) {
+    var bofOffer = ["% off", "Price point", "Bundle / multipack", "Deal event", "Free gift"];
+    if (bofOffer.indexOf(c.off) >= 0 || c.ht === "Offer / urgency" || c.cue === "Deal on Amazon" || ["Deal / price", "Bundle / value", "Seasonal / limited"].indexOf(c.ang) >= 0) return "bof";
+    if (["Trend / humor", "Curiosity / reveal", "POV / routine", "Founder / story", "Sensory", "Question", "Gift / occasion"].indexOf(c.ht) >= 0 ||
+        ["Creator lifestyle", "Self-care ritual", "Scent & sensory", "Heritage / story", "Gifting"].indexOf(c.ang) >= 0) return "tof";
+    return "mof";
+  }
+  var borrowCache = {};
+  function loadBorrow(id, node) {
+    var put = function (a) { var an = (a && a.analysis) || {}; borrowCache[id] = an.borrow || ""; node.textContent = borrowCache[id] || "Open the ad for the full read."; };
+    if (id in borrowCache) { put({ analysis: { borrow: borrowCache[id] } }); return; }
+    if (S.vault) { put(S.adsById[id]); return; }
+    if (S.db) S.db.doc("ads/" + id).get().then(function (snap) { put(snap.exists ? snap.data() : null); }).catch(function () { node.textContent = ""; });
+  }
+  function vSteal(all) {
+    var root = el("div", { class: "grid", style: "gap:18px" });
+    var fmtOk = function (c) { return S.stealFmt === "static" ? isStatic(c) || (!!c.img && !c.vid) : S.stealFmt === "video" ? !!c.vid : true; };
+    var pool = all.filter(function (c) { return c.ang && fmtOk(c); });
+    var by = { tof: [], mof: [], bof: [] }; pool.forEach(function (c) { by[funnelOf(c)].push(c); });
+    S.stage = S.stage || "tof";
+    var max = Math.max(by.tof.length, by.mof.length, by.bof.length, 1);
+    var funnel = el("div", { class: "funnel" }, FUNNEL.map(function (f, i) {
+      return el("button", { type: "button", class: "fstep", "aria-pressed": S.stage === f[0] ? "true" : "false", style: "--w:" + (100 - i * 16) + "%;--c:" + f[4],
+        onclick: function () { S.stage = f[0]; render(); } }, [el("span", { class: "fl" }, [el("b", { text: f[2] }), el("small", { text: f[1] })]), el("span", { class: "fn", text: String(by[f[0]].length) })]);
+    }));
+    var seg = el("div", { class: "seg", role: "group", style: "justify-self:start" }, [["all", "All formats"], ["static", "Statics"], ["video", "Video"]].map(function (o) {
+      return el("button", { type: "button", "aria-pressed": (S.stealFmt || "all") === o[0] ? "true" : "false", text: o[1], onclick: function () { S.stealFmt = o[0]; render(); } });
+    }));
+    var st = FUNNEL.filter(function (f) { return f[0] === S.stage; })[0];
+    root.appendChild(el("div", { class: "panel steal-head" }, [el("div", null, [el("div", { class: "label", text: "How to use this" }),
+      el("h2", { text: "Steal what already works, in " + B() + "'s own angles" }),
+      el("p", { text: "Every ad on the board sorted by the job it does in the funnel, then by angle. Each board leads with the longest-running examples (an ad that runs for months is one the brand keeps paying for), the " + B() + " angle it maps to, and a one-line play. Click any example for the full read." }), seg]), funnel]));
+    var list = by[S.stage], groups = {};
+    list.forEach(function (c) { (groups[c.ang] = groups[c.ang] || []).push(c); });
+    var order = Object.keys(groups).sort(function (a, b) { return groups[b].length - groups[a].length; });
+    root.appendChild(el("div", { class: "stage-intro" }, [el("i", { style: "background:" + st[4] }), el("b", { text: st[1] + ": " + st[2] }), el("span", { text: st[3] })]));
+    if (!order.length) root.appendChild(empty("Nothing in this stage yet", "Try another format."));
+    order.forEach(function (ang) {
+      var ads = groups[ang].slice().sort(function (a, b) { return (b.run || 0) - (a.run || 0); }), picks = [], per = {};
+      ads.forEach(function (c) { if (picks.length < 6 && (per[c.b] || 0) < 2) { picks.push(c); per[c.b] = (per[c.b] || 0) + 1; } });
+      var brands = Object.keys(tally(ads, function (c) { return c.brand; })).length, runs = ads.map(function (c) { return c.run || 0; }).sort(function (a, b) { return a - b; });
+      var med = runs[Math.floor(runs.length / 2)] || 0, map = COBA[ang] || ["", ""];
+      var hooks = tally(ads, function (c) { return c.ht; }), topHook = Object.keys(hooks).sort(function (a, b) { return hooks[b] - hooks[a]; })[0] || "";
+      root.appendChild(el("section", { class: "panel board" }, [
+        el("div", { class: "bhead" }, [
+          el("div", null, [el("h3", { text: ang }), el("p", { class: "sub", text: ads.length + " ads from " + brands + " brands · median " + med + " days running · most common opener: " + topHook })]),
+          el("button", { class: "link", type: "button", text: "See all " + ads.length + " →", onclick: function () { goLibrary({ ang: ang }); } })]),
+        el("div", { class: "play" }, [el("span", { class: "badge yes", text: B() + " · " + map[0] }), el("span", { text: map[1].replace(/\{B\}/g, B()) })]),
+        el("div", { class: "strip-row" }, picks.map(function (c) {
+          var steal = el("p", { class: "steal", text: "…" });
+          loadBorrow(c.id, steal);
+          return el("button", { type: "button", class: "mini", onclick: function () { openAd(c.id); }, "aria-label": "Open " + c.brand + " ad" }, [
+            el("div", { class: "mthumb", style: "aspect-ratio:" + Math.max(0.8, Math.min(1.25, c.ar || 0.8)) }, [c.img ? el("img", { src: c.img, alt: "", loading: "lazy" }) : c.vid ? el("video", { src: c.vid, muted: true, playsinline: true, preload: "metadata" }) : el("span", { class: "mph", text: "Dynamic ad" }),
+              el("span", { class: "pill l", text: fmtLabel(c) }), el("span", { class: "pill r", text: (c.run || 0) + "d" })]),
+            el("span", { class: "mb" }, [el("b", { text: c.brand }), c.hook ? el("q", { text: c.hook }) : null, el("span", { class: "label", text: "Steal it" }), steal])]);
+        }))]));
+    });
+    return root;
+  }
+
   function vWatch(all) {
     var w = S.watch; if (!w || !(w.brands || []).length) return null;
     var onBoard = tally(all, function (c) { return c.b; }), tiers = [["mass", "Mass", "Drugstore, under ~$15"], ["masstige", "Masstige", "$15–40, Amazon and Ulta staples"], ["prestige", "Prestige", "$40+, Sephora and own-site brands"]];
@@ -920,12 +1039,12 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
   function render() {
     var all = withProducts(cards());
     var v = VIEWS.filter(function (x) { return x[0] === S.view; })[0];
-    $("pageTitle").textContent = v[1]; $("pageSub").textContent = v[2];
+    $("pageTitle").textContent = v[1]; $("pageSub").textContent = v[2].replace("{B}", S.brandName || "your brand");
     renderNav(all);
     var box = $("content"); box.textContent = "";
     if (!S.loaded) { box.appendChild(skeleton()); return; }
     if (!all.length && S.view !== "saved") { box.appendChild(empty("The first pull is on its way", "New Meta ads that click through to Amazon land here every morning at 10:00.")); return; }
-    var node = { overview: vOverview, library: vLibrary, products: vProducts, angles: vAngles, brands: vBrands, saved: vSaved }[S.view](all);
+    var node = { overview: vOverview, library: vLibrary, products: vProducts, angles: vAngles, steal: vSteal, brands: vBrands, saved: vSaved }[S.view](all);
     node.classList.add("view");
     box.appendChild(node);
   }
@@ -1065,6 +1184,7 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
     var byRun = function (a, b) { return (b._id || "").localeCompare(a._id || "", undefined, { numeric: true }); };
     sub(db.collection("peers").orderBy("date", "desc").limit(5), function (x) { S.peers = x.sort(byRun); });
     sub(db.collection("watch").orderBy("date", "desc").limit(5), function (x) { S.watch = x.sort(byRun)[0] || null; });
+    sub(db.collection("config").limit(5), function (x) { x.forEach(function (d) { if (d._id === "brand") S.brandName = d.name || ""; }); });
   });
 
   /* ---------- hosted copy: encrypted files next to the page, decrypted here with the team passphrase ---------- */
@@ -1085,7 +1205,7 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
         if (box.ct === indexEtag) return false;
         return open(box).then(function (ix) {
           indexEtag = box.ct;
-          S.digests = ix.digests || []; S.updates = ix.updates || []; S.brands = ix.brands || {}; S.peers = (ix.peers || []).slice().reverse(); S.watch = ix.watch && ix.watch.brands ? ix.watch : null;
+          S.digests = ix.digests || []; S.updates = ix.updates || []; S.brands = ix.brands || {}; S.peers = (ix.peers || []).slice().reverse(); S.watch = ix.watch && ix.watch.brands ? ix.watch : null; S.brandName = (ix.config && ix.config.brand) || "";
           applyProducts([ix.products || {}]);
           var todo = (ix.chunks || []).filter(function (c) { return !loadedChunks[c.file]; });
           return Promise.all(todo.map(function (c) {
