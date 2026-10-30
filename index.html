@@ -1,6 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex"></head><body><title>Cartography Ad Atlas</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 40 40%27%3E%3Crect width=%2740%27 height=%2740%27 rx=%2711%27 fill=%27%2324362C%27/%3E%3Cpath d=%27M28.9 12.6A11.3 11.3 0 1 0 28.9 27.4%27 fill=%27none%27 stroke=%27%23F3EEE2%27 stroke-width=%273%27 stroke-linecap=%27round%27/%3E%3Cpath d=%27M20 13.4c.7 4.4 2.2 5.9 6.6 6.6-4.4.7-5.9 2.2-6.6 6.6-.7-4.4-2.2-5.9-6.6-6.6 4.4-.7 5.9-2.2 6.6-6.6z%27 fill=%27%23D9B26B%27/%3E%3C/svg%3E">
-<meta name="claude:viewport-fit-sides" content="cover">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex"><title>Cartography Ad Atlas</title><link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png"><link rel="alternate icon" href="favicon.ico"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="theme-color" content="#24362C"></head><body><meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sen:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -77,6 +75,8 @@ svg.i { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor;
 .nav .n { margin-left: auto; font-size: 11.5px; color: var(--muted); font-weight: 600; font-variant-numeric: tabular-nums; }
 .side-foot { margin-top: auto; display: grid; gap: 8px; padding: 12px; border-radius: var(--r); background: var(--sunk); font-size: 12px; color: var(--muted); }
 .side-foot b { color: var(--ink); font-weight: 700; }
+.side-foot .credit { display: flex; align-items: center; gap: 7px; padding-top: 8px; border-top: 1px solid var(--line); }
+.side-foot .credit i { width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 10.5px; font-weight: 800; background: var(--gold-soft); color: var(--gold); }
 .pulse { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--good); margin-right: 6px; box-shadow: 0 0 0 0 rgba(63, 122, 78, .5); animation: pulse 2.4s infinite; }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(63, 122, 78, .45); } 70% { box-shadow: 0 0 0 8px rgba(63, 122, 78, 0); } 100% { box-shadow: 0 0 0 0 rgba(63, 122, 78, 0); } }
 
@@ -285,6 +285,18 @@ svg.i { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor;
 .mb .steal { margin: 0; color: var(--ink-2); line-height: 1.4; }
 @media (max-width: 900px) { .steal-head { grid-template-columns: 1fr; } .strip-row { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 70%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; } }
 
+/* similar ads in the detail sheet */
+.sim-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.sim-cap { font-size: 12px; color: var(--muted); margin-top: -2px; }
+.sim-row { display: grid; grid-auto-flow: column; grid-auto-columns: 118px; gap: 10px; overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x mandatory; }
+.simc { display: grid; gap: 4px; align-content: start; padding: 0; border: 0; background: none; text-align: left; scroll-snap-align: start; animation: rise .35s both; animation-delay: calc(var(--i) * 30ms); }
+.simc .st { position: relative; display: block; aspect-ratio: 4 / 5; border-radius: 10px; overflow: hidden; background: var(--sunk); border: 1px solid var(--line); transition: transform .15s; }
+.simc:hover .st { transform: translateY(-2px); }
+.simc img, .simc video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; }
+.simc .pill { top: 6px; right: 6px; font-size: 9.5px; padding: 3px 6px; }
+.simc b { font-size: 11.5px; font-weight: 700; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.simc .sh { font-size: 12px; font-weight: 600; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
 /* tables */
 .tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
 .tbl th { text-align: left; font-weight: 600; font-size: 11.5px; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); padding: 10px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
@@ -378,10 +390,14 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
 .lock-card .err { color: var(--rose); font-size: 13px; min-height: 18px; }
 
 .tabbar { display: none; }
+.m-credit { display: none; margin: 28px 0 0; text-align: center; font-size: 12px; color: var(--muted); }
 @media (min-width: 901px) and (max-width: 1180px) {
   .app { grid-template-columns: 76px minmax(0, 1fr); }
   .side { padding: 18px 12px; align-items: center; gap: 26px; }
-  .logo { padding: 0; } .logo div, .nav .lbl, .nav .n, .side-foot { display: none; }
+  .logo { padding: 0; } .logo div, .nav .lbl, .nav .n { display: none; }
+  .side-foot { padding: 0; background: none; justify-items: center; } .side-foot > span:first-child { display: none; }
+  .side-foot .credit { border: 0; padding: 0; font-size: 0; gap: 0; } .side-foot .credit b { display: none; }
+  .side-foot .credit i { width: 30px; height: 30px; font-size: 12px; }
   .nav button { justify-content: center; padding: 11px; }
   .top { padding-left: 22px; } .top p { display: none; }
   .content { padding-left: 22px; padding-right: 22px; }
@@ -395,6 +411,7 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
   .prod { grid-template-columns: 30px minmax(0, 1fr); } .prod img { width: 30px; height: 30px; } .prod .t { display: none; } .prod .p { text-align: left; }
   .seg { max-width: 100%; overflow-x: auto; }
   .content { padding: 16px max(16px, env(safe-area-inset-right, 0px)) 96px max(16px, env(safe-area-inset-left, 0px)); }
+  .m-credit { display: block; }
   .tabbar { display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; justify-content: space-around; background: var(--surface); border-top: 1px solid var(--line);
     padding: 6px max(8px, env(safe-area-inset-right, 0px)) calc(6px + env(safe-area-inset-bottom, 0px)) max(8px, env(safe-area-inset-left, 0px)); }
   .tabbar button { border: 0; background: none; display: grid; justify-items: center; gap: 2px; font-size: 10.5px; font-weight: 600; color: var(--muted); padding: 4px 6px; }
@@ -472,10 +489,10 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
     bag: '<path d="M6 7h12l1 14H5L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/>',
     dollar: '<path d="M12 2v20M17 6.5C16 5 14.3 4.5 12 4.5c-3 0-5 1.4-5 3.6 0 5 10 2.5 10 7.6 0 2.2-2 3.8-5 3.8-2.4 0-4.2-.8-5.2-2.4"/>'
   };
-  var VIEWS = [["overview", "Overview", "What the newest Meta → Amazon beauty ads are doing"], ["library", "Ad library", "Every creative, with its hook, angle and the product it sells"],
-    ["products", "Products", "What the ads are selling on Amazon, by price tier"], ["angles", "Hooks & angles", "How these ads open and what they sell on"],
-    ["steal", "Steal boards", "Proven ideas by funnel stage and angle, each with how {B} can use it"],
-    ["brands", "Brands", "Who sends Meta traffic to Amazon, and which like-minded brands don't"], ["saved", "Saved", "Creatives you starred"]];
+  var VIEWS = [["overview", "Overview", "Meta → Amazon beauty ads, today"], ["library", "Ad library", "Every creative, hook and product"],
+    ["products", "Products", "What the ads sell, by price"], ["angles", "Hooks & angles", "How the ads open and sell"],
+    ["steal", "Steal boards", "Proven ideas for {B}, by funnel and angle"],
+    ["brands", "Brands", "Who sends Meta traffic to Amazon"], ["saved", "Saved", "Your starred creatives"]];
 
   var S = { days: [], digests: [], updates: [], brands: {}, saves: {}, catalog: {}, adAsin: {}, peers: [], watch: null, canWrite: false, db: null, uid: null, loaded: false,
             f: { q: "", fmt: "all", status: "all", brand: "", ang: "", ht: "", mkt: "", tier: "", asin: "", sort: "added" }, shown: PAGE, view: "overview", ptier: "" };
@@ -720,18 +737,18 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
       var dt = new Date(today - hi * 864e5 + 864e5); weeks.push({ label: dt.getDate() + " " + "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec".split(" ")[dt.getMonth()], values: v });
     }
     root.appendChild(el("div", { class: "grid row-a" }, [
-      el("div", { class: "panel" }, [el("h3", { text: "Format mix" }), el("p", { class: "sub", text: "What the creatives are made as" }),
+      el("div", { class: "panel" }, [el("h3", { text: "Format mix" }), 
         donut(Object.keys(fm).sort(function (a, b) { return fm[b] - fm[a]; }).map(function (k) { return [k, fm[k], FMT_COLOR[k] || "var(--rose)"]; }))]),
-      el("div", { class: "panel" }, [el("h3", { text: "Launches per week" }), el("p", { class: "sub", text: "When the ads on the board started running, last 12 weeks" }),
+      el("div", { class: "panel" }, [el("h3", { text: "Launches per week" }), el("p", { class: "sub", text: "Last 12 weeks" }),
         columns(weeks, [["Video", "var(--brand)"], ["Static", "var(--sage)"], ["Dynamic", "var(--sand)"]])])
     ]));
     var tierAds = {}; TIERS.forEach(function (t) { tierAds[t] = 0; }); all.forEach(function (c) { if (c.p) tierAds[tierOf(c.p.price)]++; });
     var bc = tally(all, function (c) { return c.b; }), topB = Object.keys(bc).sort(function (a, b) { return bc[b] - bc[a]; }).slice(0, 8), bmax = bc[topB[0]] || 1;
     root.appendChild(el("div", { class: "grid cols-3" }, [
-      el("div", { class: "panel" }, [el("h3", { text: "Top angles" }), el("p", { class: "sub", text: "The main reason to buy each ad gives" }), bars(tally(all, function (c) { return c.ang; }), { top: 7, pick: function (k) { goLibrary({ ang: k }); } })]),
-      el("div", { class: "panel" }, [el("h3", { text: "Ads by product price" }), el("p", { class: "sub", text: "Ads whose Amazon product we could price" }),
+      el("div", { class: "panel" }, [el("h3", { text: "Top angles" }), bars(tally(all, function (c) { return c.ang; }), { top: 7, pick: function (k) { goLibrary({ ang: k }); } })]),
+      el("div", { class: "panel" }, [el("h3", { text: "Ads by product price" }), 
         bars(tierAds, { order: TIERS.slice().reverse(), colors: TIER_COLOR, pick: function (k) { goLibrary({ tier: k }); } })]),
-      el("div", { class: "panel" }, [el("h3", { text: "Most active brands" }), el("p", { class: "sub", text: "Ads on the board · video vs static" }),
+      el("div", { class: "panel" }, [el("h3", { text: "Most active brands" }), el("p", { class: "sub", text: "Video · static" }),
         el("div", { class: "toplist" }, topB.map(function (b) {
           var list = all.filter(function (c) { return c.b === b; }), st = list.filter(isStatic).length, name = (list[0] || {}).brand || b;
           return el("button", { type: "button", onclick: function () { goLibrary({ brand: b }); } }, [avatar(b), el("span", { class: "nm", text: name }),
@@ -791,7 +808,7 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
     var items = Object.keys(byAsin).map(function (a) { return byAsin[a]; });
     if (!items.length) { root.appendChild(empty("No products priced yet", "Products appear once the daily run looks up the Amazon pages the ads link to.")); return root; }
     var mapped = all.filter(function (c) { return c.p; }).length, hbAds = all.filter(function (c) { return c.p && c.p.price >= 50; }).length;
-    root.appendChild(el("p", { class: "sub", style: "margin:0 0 14px;color:var(--muted);font-size:13px", text: mapped + " of " + all.length + " ads link to a product we could price on Amazon US. " + hbAds + " of them sell something over $50. Click a tier to focus on it." }));
+    root.appendChild(el("p", { class: "sub", style: "margin:0 0 14px;color:var(--muted);font-size:13px", text: mapped + " of " + all.length + " ads priced · " + hbAds + " sell over $50" }));
     var head = el("div", { class: "tiers-head" });
     TIERS.forEach(function (t) {
       var ps = items.filter(function (it) { return tierOf(it.p.price) === t; }), ads = ps.reduce(function (s, it) { return s + it.ads.length; }, 0);
@@ -830,12 +847,12 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
     var thisW = tally(all.filter(function (c) { return wk(c, 0, 7); }), function (c) { return c.ang; }), lastW = tally(all.filter(function (c) { return wk(c, 7, 14); }), function (c) { return c.ang; });
     var delta = {}; Object.keys(Object.assign({}, thisW, lastW)).forEach(function (k) { delta[k] = (thisW[k] || 0) - (lastW[k] || 0); });
     root.appendChild(el("div", { class: "grid cols-3" }, [
-      el("div", { class: "panel" }, [el("h3", { text: "Angles" }), el("p", { class: "sub", text: "▲▼ = launches this week vs last" }), bars(tally(all, function (c) { return c.ang; }), { deltas: delta, pick: function (k) { goLibrary({ ang: k }); } })]),
-      el("div", { class: "panel" }, [el("h3", { text: "Hook types" }), el("p", { class: "sub", text: "How the first line or frame opens" }), bars(tally(all, function (c) { return c.ht; }), { color: "var(--slate)", pick: function (k) { goLibrary({ ht: k }); } })]),
-      el("div", { class: "panel" }, [el("h3", { text: "Production" }), el("p", { class: "sub", text: "How the creative is made" }), bars(tally(all, function (c) { return c.prod; }), { color: "var(--gold)" })]),
-      el("div", { class: "panel" }, [el("h3", { text: "Who's on camera" }), el("p", { class: "sub", text: "Creator, brand, founder or nobody" }), bars(tally(all, function (c) { return c.tal; }), { color: "var(--sand)" })]),
-      el("div", { class: "panel" }, [el("h3", { text: "Offers" }), el("p", { class: "sub", text: "What deal, if any, the ad leads with" }), bars(tally(all, function (c) { return c.off; }), { color: "var(--rose)" })]),
-      el("div", { class: "panel" }, [el("h3", { text: "How the ad points to Amazon" }), el("p", { class: "sub", text: "The Amazon cue inside the creative" }), bars(tally(all, function (c) { return c.cue; }), { color: "var(--sage)" })])
+      el("div", { class: "panel" }, [el("h3", { text: "Angles" }), el("p", { class: "sub", text: "▲▼ vs last week" }), bars(tally(all, function (c) { return c.ang; }), { deltas: delta, pick: function (k) { goLibrary({ ang: k }); } })]),
+      el("div", { class: "panel" }, [el("h3", { text: "Hook types" }), bars(tally(all, function (c) { return c.ht; }), { color: "var(--slate)", pick: function (k) { goLibrary({ ht: k }); } })]),
+      el("div", { class: "panel" }, [el("h3", { text: "Production" }), bars(tally(all, function (c) { return c.prod; }), { color: "var(--gold)" })]),
+      el("div", { class: "panel" }, [el("h3", { text: "Who's on camera" }), bars(tally(all, function (c) { return c.tal; }), { color: "var(--sand)" })]),
+      el("div", { class: "panel" }, [el("h3", { text: "Offers" }), bars(tally(all, function (c) { return c.off; }), { color: "var(--rose)" })]),
+      el("div", { class: "panel" }, [el("h3", { text: "How the ad points to Amazon" }), bars(tally(all, function (c) { return c.cue; }), { color: "var(--sage)" })])
     ]));
     var angs = Object.keys(tally(all, function (c) { return c.ang; })), fmts = ["Video", "Image", "Carousel", "Multi", "Dynamic"], cell = {}, mx = 1;
     all.forEach(function (c) { var k = c.ang + "|" + fmtLabel(c); cell[k] = (cell[k] || 0) + 1; mx = Math.max(mx, cell[k]); });
@@ -847,10 +864,10 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
           return td;
         })));
       }))]);
-    root.appendChild(el("div", { class: "panel" }, [el("h3", { text: "Angle by format" }), el("p", { class: "sub", text: "Where each selling reason shows up" }), el("div", { class: "heat" }, [table])]));
+    root.appendChild(el("div", { class: "panel" }, [el("h3", { text: "Angle by format" }), el("div", { class: "heat" }, [table])]));
     var groups = {}; all.forEach(function (c) { if (c.hook && c.ht) (groups[c.ht] = groups[c.ht] || []).push(c); });
     var order = Object.keys(groups).sort(function (a, b) { return groups[b].length - groups[a].length; });
-    root.appendChild(el("div", { class: "panel" }, [el("h3", { text: "Hook library" }), el("p", { class: "sub", text: "Opening lines grouped by type, longest-running first: a hook that runs for weeks is one the advertiser keeps paying for" }),
+    root.appendChild(el("div", { class: "panel" }, [el("h3", { text: "Hook library" }), el("p", { class: "sub", text: "Longest-running first" }),
       el("div", { class: "hl" }, order.map(function (t) {
         var rows = groups[t].slice().sort(function (a, b) { return (b.run || 0) - (a.run || 0); }).slice(0, 7);
         return el("div", null, [el("div", { class: "label", style: "display:flex;justify-content:space-between;margin-bottom:6px" }, [t, el("span", { text: groups[t].length + " ads" })])].concat(rows.map(function (c) {
@@ -914,13 +931,11 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
       return el("button", { type: "button", "aria-pressed": (S.stealFmt || "all") === o[0] ? "true" : "false", text: o[1], onclick: function () { S.stealFmt = o[0]; render(); } });
     }));
     var st = FUNNEL.filter(function (f) { return f[0] === S.stage; })[0];
-    root.appendChild(el("div", { class: "panel steal-head" }, [el("div", null, [el("div", { class: "label", text: "How to use this" }),
-      el("h2", { text: "Steal what already works, in " + B() + "'s own angles" }),
-      el("p", { text: "Every ad on the board sorted by the job it does in the funnel, then by angle. Each board leads with the longest-running examples (an ad that runs for months is one the brand keeps paying for), the " + B() + " angle it maps to, and a one-line play. Click any example for the full read." }), seg]), funnel]));
+    root.appendChild(el("div", { class: "panel steal-head" }, [el("div", null, [el("h2", { text: "Steal what already works" }),
+      el("p", { text: "Longest-running first, mapped to " + B() + "'s angles." }), seg]), funnel]));
     var list = by[S.stage], groups = {};
     list.forEach(function (c) { (groups[c.ang] = groups[c.ang] || []).push(c); });
     var order = Object.keys(groups).sort(function (a, b) { return groups[b].length - groups[a].length; });
-    root.appendChild(el("div", { class: "stage-intro" }, [el("i", { style: "background:" + st[4] }), el("b", { text: st[1] + ": " + st[2] }), el("span", { text: st[3] })]));
     if (!order.length) root.appendChild(empty("Nothing in this stage yet", "Try another format."));
     order.forEach(function (ang) {
       var ads = groups[ang].slice().sort(function (a, b) { return (b.run || 0) - (a.run || 0); }), picks = [], per = {};
@@ -986,7 +1001,7 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
           el("td", null, [r.maxp != null ? el("span", { class: "badge" + (r.maxp >= 50 ? " hi" : ""), text: money(r.maxp) }) : "—"]),
           el("td", { text: r.top }), el("td", { text: r.longest + " days" })]);
       }))]);
-    root.appendChild(el("div", { class: "panel" }, [el("h3", { text: "Brands sending Meta traffic to Amazon" }), el("p", { class: "sub", text: "Click a row to see that brand's ads. Tagged = links carry an Amazon Attribution tag, so the brand can measure the sale." }), el("div", { class: "scroll" }, [t])]));
+    root.appendChild(el("div", { class: "panel" }, [el("h3", { text: "Brands sending Meta traffic to Amazon" }), el("p", { class: "sub", text: "Tagged = Amazon Attribution link" }), el("div", { class: "scroll" }, [t])]));
     var pr = S.peers[0];
     var hb = pr && pr.hb;
     if (hb && (hb.brands || []).length) {
@@ -997,7 +1012,7 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
             el("td", { text: r.dest || "", style: "color:var(--muted)" }), el("td", { text: r.note || "" })]);
         }))]);
       root.appendChild(el("div", { class: "panel" }, [el("h3", { text: "High-ticket brands: who sends Meta traffic to $50+ Amazon products?" }),
-        el("p", { class: "sub", text: hb.summary + (hb.not_found ? " " + hb.not_found : "") }), el("div", { class: "scroll" }, [ht])]));
+        el("p", { class: "sub", text: (hb.summary || "").split(". ")[0] + "." }), el("div", { class: "scroll" }, [ht])]));
     }
     if (pr && (pr.brands || []).length) {
       var pt = el("table", { class: "tbl" }, [el("thead", null, [el("tr", null, ["Brand", "Ads checked", "To Amazon", "Catalog ads via a retailer", "Where their Meta ads go", "Read"].map(function (h) { return el("th", { text: h }); }))]),
@@ -1008,7 +1023,7 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
             el("td", { text: r.dest || "", style: "color:var(--muted)" }), el("td", { text: r.note || "" })]);
         }))]);
       root.appendChild(el("div", { class: "panel" }, [el("h3", { text: "Like-minded brands: do they run CPAS to Amazon?" }),
-        el("p", { class: "sub", text: (pr.summary || "") + " Checked " + fmtDate(pr.date) + " across up to 60 of each brand's newest ads: catalog/dynamic first, then any format." }), el("div", { class: "scroll" }, [pt])]));
+        el("p", { class: "sub", text: (pr.summary || "").split(". ")[0] + "." }), el("div", { class: "scroll" }, [pt])]));
     }
     return root;
   }
@@ -1033,8 +1048,9 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
     };
     mk($("nav"), false); mk($("tabbar"), true);
     var d = S.digests[0], foot = $("sideFoot"); foot.textContent = "";
-    foot.appendChild(el("span", null, [el("span", { class: "pulse" }), "Updates every day at 10:00"]));
-    if (d) { var at = d.at ? new Date(d.at) : null; foot.appendChild(el("span", null, ["Last update ", el("b", { text: at ? at.toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) : fmtDate(d.date) })])); foot.appendChild(el("span", { text: "+" + (d.new_ads || 0) + " creatives in that run" })); }
+    var at = d && d.at ? new Date(d.at) : null;
+    foot.appendChild(el("span", { title: "Updates daily at 10:00" }, [el("span", { class: "pulse" }), "Updated ", el("b", { text: at ? at.toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }) : d ? fmtDate(d.date) : "daily" })]));
+    if (S.credit) foot.appendChild(el("span", { class: "credit", title: "Created by " + S.credit }, [el("i", { text: S.credit.charAt(0) }), "Created by ", el("b", { text: S.credit })]));
   }
   function render() {
     var all = withProducts(cards());
@@ -1047,6 +1063,44 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
     var node = { overview: vOverview, library: vLibrary, products: vProducts, angles: vAngles, steal: vSteal, brands: vBrands, saved: vSaved }[S.view](all);
     node.classList.add("view");
     box.appendChild(node);
+    if (S.credit) box.appendChild(el("p", { class: "m-credit", text: "Created by " + S.credit }));
+  }
+
+  /* ---------- similar ads: same hook, angle, funnel stage or visual treatment ---------- */
+  function similar(c) {
+    var pool = withProducts(cards()).filter(function (x) { return x.id !== c.id; });
+    var look = function (x) { return (isStatic(x) || (!x.vid && x.img) ? "s" : "v") + "|" + (x.prod || ""); };
+    var tabs = [
+      ["hook", "Hook", c.ht, function (x) { return c.ht && x.ht === c.ht; }],
+      ["angle", "Angle", c.ang, function (x) { return c.ang && (x.ang === c.ang || (x.ang2 || []).indexOf(c.ang) >= 0); }],
+      ["funnel", "Funnel", { tof: "Top of funnel", mof: "Middle of funnel", bof: "Bottom of funnel" }[funnelOf(c)], function (x) { return funnelOf(x) === funnelOf(c); }],
+      ["look", "Look", c.prod, function (x) { return c.prod && look(x) === look(c); }]];
+    var lists = {};
+    tabs.forEach(function (t) {
+      var per = {}, out = [];
+      pool.filter(t[3]).sort(function (a, b) { return ((a.b === c.b) - (b.b === c.b)) || ((b.run || 0) - (a.run || 0)); })
+        .forEach(function (x) { if (out.length < 12 && (per[x.b] || 0) < 2) { out.push(x); per[x.b] = (per[x.b] || 0) + 1; } });
+      lists[t[0]] = out;
+    });
+    var cur = S.simTab && lists[S.simTab] && lists[S.simTab].length ? S.simTab : (tabs.filter(function (t) { return lists[t[0]].length; })[0] || tabs[0])[0];
+    var row = el("div", { class: "sim-row" }), cap = el("span", { class: "sim-cap" });
+    var seg = el("div", { class: "seg", role: "group" });
+    function show(key) {
+      cur = S.simTab = key;
+      [].forEach.call(seg.children, function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-k") === key ? "true" : "false"); });
+      var t = tabs.filter(function (x) { return x[0] === key; })[0];
+      cap.textContent = t[2] || "";
+      row.textContent = "";
+      lists[key].forEach(function (x, i) {
+        row.appendChild(el("button", { type: "button", class: "simc", style: "--i:" + i, title: x.brand + (x.hook ? ": " + x.hook : ""), onclick: function () { openAd(x.id); } }, [
+          el("span", { class: "st" }, [x.img ? el("img", { src: x.img, alt: "", loading: "lazy" }) : x.vid ? el("video", { src: x.vid, muted: true, playsinline: true, preload: "metadata" }) : null, el("span", { class: "pill r", text: (x.run || 0) + "d" })]),
+          el("b", { text: x.brand }), x.hook ? el("span", { class: "sh", text: x.hook }) : null]));
+      });
+      if (!lists[key].length) row.appendChild(el("span", { class: "sub", text: "None yet." }));
+    }
+    tabs.forEach(function (t) { seg.appendChild(el("button", { type: "button", "data-k": t[0], text: t[1] + " " + lists[t[0]].length, onclick: function () { show(t[0]); } })); });
+    show(cur);
+    return el("div", { class: "sec sim" }, [el("div", { class: "sim-head" }, [el("span", { class: "label", text: "Similar ads" }), seg]), cap, row]);
   }
 
   /* ---------- detail sheet ---------- */
@@ -1098,6 +1152,7 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
     if (c.p) right.appendChild(el("div", { class: "pbox" }, [c.p.img ? el("img", { src: c.p.img, alt: "" }) : el("span"), el("div", { style: "display:grid;gap:3px;min-width:0" }, [
       el("span", { class: "label", text: "Sells · " + tierOf(c.p.price) }), el("span", { text: c.p.title, style: "font-weight:600;font-size:13.5px" }),
       el("span", null, [el("b", { text: money(c.p.price), class: c.p.price >= 50 ? "tier-hi" : null }), el("span", { class: "stars", style: "margin-left:10px" }, [el("i", { text: "★ " }), (c.p.rating || 0) + " (" + compact(c.p.reviews || 0) + ")" + (c.p.sales ? " · ≈" + compact(c.p.sales) + " sold/mo" : "")])])])]));
+    right.appendChild(similar(c));
     var slot = el("div", { class: "sec" }, [el("div", { class: "skel", style: "height:120px" })]);
     right.appendChild(slot);
     close.focus();
@@ -1112,17 +1167,16 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
       if (an.why || an.borrow) slot.appendChild(el("div", { class: "read" }, [an.why ? el("p", null, [el("b", { text: "Why it works" }), an.why]) : null, an.borrow ? el("p", { class: "g" }, [el("b", { text: "How we could borrow it" }), an.borrow]) : null]));
       slot.appendChild(el("div", { class: "sec" }, [el("div", { class: "label", text: "Creative" }), kv([
         ["Format", fmtLabel(c) + (a.fmt && FMT[a.fmt] && FMT[a.fmt].toUpperCase() !== a.fmt ? " (" + a.fmt.replace(/_/g, " ").toLowerCase() + ")" : "")], ["Length", c.dur ? fmtDur(c.dur) : ""], ["Cards", a.n_cards > 1 ? a.n_cards : ""],
-        ["Versions", c.var > 1 ? c.var + " near-identical ads" : "1"], ["Platforms", (a.platforms || c.plat || []).join(", ").replace(/_/g, " ")], ["Button", a.cta || ""],
+        ["Versions", c.var > 1 ? String(c.var) : ""], ["Platforms", (a.platforms || c.plat || []).join(", ").replace(/_/g, " ")], ["Button", a.cta || ""],
         ["Launched", fmtDate(a.started || c.started)], ["Last seen", fmtDate(c.seen) + (c.live && !c.stale ? " · live" : " · not seen since")], ["Running", (c.run || 0) + " days"],
-        ["Found by", { sweep: "Daily Amazon sweep", watch: "Watchlist", winners: "Long-runner check", scout: "Brand scout", adlib: "Meta Ad Library crawl" }[c.src] || c.src]])]));
+        ["Source", { sweep: "Foreplay sweep", watch: "Foreplay", winners: "Foreplay", scout: "Foreplay", adlib: "Meta Ad Library" }[c.src] || c.src]])]));
       if (a.headline || a.copy) slot.appendChild(el("div", { class: "sec" }, [el("div", { class: "label", text: "Copy" }), a.headline ? el("b", { text: a.headline }) : null, a.copy ? el("p", { class: "copy", text: a.copy }) : null]));
-      if (a.transcript) slot.appendChild(el("details", null, [el("summary", { text: a.asr ? "What's said in the first 35 seconds (auto-transcribed)" : "Video transcript" }), el("p", { class: "copy", style: "margin-top:8px", text: a.transcript })]));
+      if (a.transcript) slot.appendChild(el("details", null, [el("summary", { text: "Transcript" + (a.asr ? " (first 35 s)" : "") }), el("p", { class: "copy", style: "margin-top:8px", text: a.transcript })]));
       if ((a.cards || []).length > 1) slot.appendChild(el("details", null, [el("summary", { text: "Carousel cards (" + a.cards.length + ")" }), kv(a.cards.map(function (cd, i) { return ["Card " + (i + 1), [cd.headline, cd.description].filter(Boolean).join(" — ")]; }))]));
       slot.appendChild(el("div", { class: "sec" }, [el("div", { class: "label", text: "Where the click lands" }), kv([
         ["Destination", LAND[land.type] || land.type || ""], ["Market", land.market || ""], ["ASIN", land.asin || (c.p ? c.p.asin : "")], ["Attribution tag", land.tagged ? "Yes (maas)" : "No"], ["Route", land.via && land.via !== "direct" ? land.via : "Direct to Amazon"]]),
         land.url ? urlNode(land.url) : null]));
       var sig = [signals(a.emotional_drivers), signals(a.persona), signals(a.creative_targeting)].filter(Boolean);
-      if (sig.length) slot.appendChild(el("details", null, [el("summary", { text: "Foreplay's own tags" }), el("p", { class: "copy", style: "margin-top:8px;color:var(--muted)", text: sig.join("\n") })]));
       var links = [];
       if (land.url) links.push(el("a", { class: "primary", href: land.url, target: "_blank", rel: "noopener", text: "Open the Amazon page ↗" }));
       if (a.foreplay_url) links.push(el("a", { href: a.foreplay_url, target: "_blank", rel: "noopener", text: "Foreplay ↗" }));
@@ -1184,7 +1238,7 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
     var byRun = function (a, b) { return (b._id || "").localeCompare(a._id || "", undefined, { numeric: true }); };
     sub(db.collection("peers").orderBy("date", "desc").limit(5), function (x) { S.peers = x.sort(byRun); });
     sub(db.collection("watch").orderBy("date", "desc").limit(5), function (x) { S.watch = x.sort(byRun)[0] || null; });
-    sub(db.collection("config").limit(5), function (x) { x.forEach(function (d) { if (d._id === "brand") S.brandName = d.name || ""; }); });
+    sub(db.collection("config").limit(5), function (x) { x.forEach(function (d) { if (d._id === "brand") { S.brandName = d.name || ""; S.credit = d.credit || ""; } }); });
   });
 
   /* ---------- hosted copy: encrypted files next to the page, decrypted here with the team passphrase ---------- */
@@ -1205,7 +1259,7 @@ details summary { cursor: pointer; font-size: 12.5px; color: var(--muted); font-
         if (box.ct === indexEtag) return false;
         return open(box).then(function (ix) {
           indexEtag = box.ct;
-          S.digests = ix.digests || []; S.updates = ix.updates || []; S.brands = ix.brands || {}; S.peers = (ix.peers || []).slice().reverse(); S.watch = ix.watch && ix.watch.brands ? ix.watch : null; S.brandName = (ix.config && ix.config.brand) || "";
+          S.digests = ix.digests || []; S.updates = ix.updates || []; S.brands = ix.brands || {}; S.peers = (ix.peers || []).slice().reverse(); S.watch = ix.watch && ix.watch.brands ? ix.watch : null; S.brandName = (ix.config && ix.config.brand) || ""; S.credit = (ix.config && ix.config.credit) || "";
           applyProducts([ix.products || {}]);
           var todo = (ix.chunks || []).filter(function (c) { return !loadedChunks[c.file]; });
           return Promise.all(todo.map(function (c) {
